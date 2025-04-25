@@ -197,7 +197,7 @@
             <div class="music-player">
                 <div class="now-playing">
                     <div class="album-art">
-                        <img src="Images/music-placeholder.jpg" alt="Album Art" id="current-album-art">
+                        <img src="https://via.placeholder.com/150?text=Music" alt="Album Art" id="current-album-art">
                     </div>
                     <div class="track-info">
                         <h3 id="current-track">Select a song to play</h3>
@@ -228,7 +228,7 @@
             <div class="playlist">
                 <h3 class="playlist-title">Worship Songs</h3>
                 <div class="playlist-items">
-                    <div class="playlist-item" data-src="music/song1.mp3" data-title="Amazing Grace" data-artist="Church Choir">
+                    <div class="playlist-item" data-src="#" data-title="Amazing Grace" data-artist="Church Choir">
                         <div class="item-number">1</div>
                         <div class="item-info">
                             <h4>Amazing Grace</h4>
@@ -236,7 +236,7 @@
                         </div>
                         <div class="item-duration">3:45</div>
                     </div>
-                    <div class="playlist-item" data-src="music/song2.mp3" data-title="How Great Is Our God" data-artist="Worship Team">
+                    <div class="playlist-item" data-src="#" data-title="How Great Is Our God" data-artist="Worship Team">
                         <div class="item-number">2</div>
                         <div class="item-info">
                             <h4>How Great Is Our God</h4>
@@ -244,7 +244,7 @@
                         </div>
                         <div class="item-duration">4:20</div>
                     </div>
-                    <div class="playlist-item" data-src="music/song3.mp3" data-title="10,000 Reasons" data-artist="Praise Band">
+                    <div class="playlist-item" data-src="#" data-title="10,000 Reasons" data-artist="Praise Band">
                         <div class="item-number">3</div>
                         <div class="item-info">
                             <h4>10,000 Reasons</h4>
@@ -279,54 +279,18 @@
             </div>
             
             <!-- Featured Sermon -->
-            <div class="featured-sermon">
-                <div class="sermon-video">
-                    <div class="video-container">
-                        <iframe id="featured-video" width="100%" height="100%" 
-                            src="https://www.youtube.com/embed/example" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                </div>
-                <div class="sermon-details">
-                    <h3 class="sermon-title">Featured Sermon Title</h3>
-                    <div class="sermon-meta">
-                        <span class="speaker">Pastor John</span>
-                        <span class="date">April 15, 2024</span>
-                        <span class="duration">45:30</span>
-                    </div>
-                    <p class="sermon-description">A brief description of the sermon content and key points covered in this message.</p>
-                    <div class="sermon-actions">
-                        <button class="action-btn download-btn">Download Notes</button>
-                        <button class="action-btn share-btn">Share</button>
-                    </div>
-                </div>
+            <div class="featured-sermon" id="featured-sermon">
+                <!-- Featured video will be loaded here dynamically -->
             </div>
             
             <!-- Sermon List -->
             <div class="sermon-list" id="sermon-list">
                 <!-- Sermons will be loaded here dynamically -->
-                <div class="sermon-card">
-                    <div class="sermon-thumbnail">
-                        <img src="Images/sermon-thumbnail.jpg" alt="Sermon Thumbnail">
-                        <div class="play-overlay">▶</div>
-                    </div>
-                    <div class="sermon-info">
-                        <h4>Sermon Title</h4>
-                        <div class="sermon-meta">
-                            <span class="speaker">Pastor John</span>
-                            <span class="date">April 15, 2024</span>
-                        </div>
-                        <p class="sermon-excerpt">Brief excerpt from the sermon description...</p>
-                    </div>
-                </div>
             </div>
             
             <!-- Load More Button -->
             <div class="load-more">
-                <button class="load-more-btn">Load More Sermons</button>
+                <button class="load-more-btn" id="load-more-btn">Load More Sermons</button>
             </div>
         </div>
     </section>
@@ -337,9 +301,9 @@
                 <h2 class="contact-title">Contact Us</h2>
                 <p class="contact-subtitle">Feel free to contact us. We will get back to you!</p>
                 
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" id="contact-form" action="https://formspree.io/f/mldbddrg" method="POST">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Name" required>
+                        <input type="text" id="name" name="name" placeholder="Name" required minlength="2" maxlength="50">
                     </div>
                     
                     <div class="form-group">
@@ -347,10 +311,29 @@
                     </div>
                     
                     <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Message" rows="4" required></textarea>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number (optional)" pattern="[0-9]{10}">
                     </div>
                     
-                    <button type="submit" class="send-btn">SEND</button>
+                    <div class="form-group">
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Select Subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="prayer">Prayer Request</option>
+                            <option value="event">Event Information</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Message" rows="4" required minlength="10" maxlength="1000"></textarea>
+                    </div>
+                    
+                    <div class="form-status" id="form-status"></div>
+                    
+                    <button type="submit" class="send-btn" id="submit-btn">
+                        <span class="btn-text">SEND</span>
+                        <span class="btn-spinner" style="display: none;">⏳</span>
+                    </button>
                 </form>
             </div>
 
