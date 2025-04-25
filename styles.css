@@ -597,21 +597,6 @@ footer p {
 .nav-links a:hover {
     color: #ff6b6b;
 }
-.donate-btn {
-    background: #82c91e;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.donate-btn:hover {
-    background: #74b816;
-}
 
 .social-links {
     display: flex;
